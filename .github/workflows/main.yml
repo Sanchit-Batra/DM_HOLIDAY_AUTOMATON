@@ -2,7 +2,8 @@ name: Holiday Check
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    # Changed to run every hour instead to save GitHub Action minutes
+    - cron: "*/30 * * * *" 
   workflow_dispatch:
 
 jobs:
@@ -17,7 +18,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          # Enables caching so pip install finishes in seconds on subsequent runs
+          cache: 'pip' 
 
+      # Mandatory step to ensure Selenium can find a browser to control
+      - name: Setup Chrome/Chromedriver
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      # It is standard practice to create a requirements.txt, but this works fine
       - name: Install dependencies
         run: |
           pip install selenium sinricpro
@@ -29,4 +39,3 @@ jobs:
           SINRICPRO_APP_SECRET: ${{ secrets.SINRICPRO_APP_SECRET }}
         run: |
           python "DM Holiday Automation.py"
-
