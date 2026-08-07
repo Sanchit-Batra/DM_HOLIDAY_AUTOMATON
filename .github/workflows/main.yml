@@ -2,8 +2,8 @@ name: Holiday Check
 
 on:
   schedule:
-    # Changed to run every hour instead to save GitHub Action minutes
-    - cron: "*/30 * * * *" 
+    # Changed to run every 15 mins instead
+    - cron: "*/15 * * * *" 
   workflow_dispatch:
 
 jobs:
