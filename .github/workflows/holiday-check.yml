@@ -2,7 +2,7 @@ name: Holiday Check
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -18,6 +18,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
       - name: Install dependencies
         run: |
           pip install selenium sinricpro
@@ -29,4 +34,3 @@ jobs:
           SINRICPRO_APP_SECRET: ${{ secrets.SINRICPRO_APP_SECRET }}
         run: |
           python "DM Holiday Automation.py"
-
