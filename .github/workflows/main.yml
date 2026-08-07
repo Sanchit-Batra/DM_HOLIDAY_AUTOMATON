@@ -1,0 +1,39 @@
+name: Holiday Check
+
+on:
+  schedule:
+    # Changed to run every hour instead to save GitHub Action minutes
+    - cron: "*/30 * * * *" 
+  workflow_dispatch:
+
+jobs:
+  check-holiday:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Mandatory step to ensure Selenium can find a browser to control
+      - name: Setup Chrome/Chromedriver
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      # It is standard practice to create a requirements.txt, but this works fine
+      - name: Install dependencies
+        run: |
+          pip install selenium sinricpro
+
+      - name: Run holiday checker
+        env:
+          DMSWITCH_DEVICE_ID: ${{ secrets.DMSWITCH_DEVICE_ID }}
+          SINRICPRO_APP_KEY: ${{ secrets.SINRICPRO_APP_KEY }}
+          SINRICPRO_APP_SECRET: ${{ secrets.SINRICPRO_APP_SECRET }}
+        run: |
+          python "DM Holiday Automation.py"
