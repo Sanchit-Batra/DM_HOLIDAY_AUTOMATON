@@ -44,7 +44,7 @@ async def checker():
             "contains(., 'मौसम विभाग') and "
             "contains(., 'कक्षा 1 से 12')]"
         )
-        await asyncio.sleep(2)
+        await asyncio.sleep(5)
         browser.save_screenshot("screenshot.png")
         return len(browser.find_elements(By.XPATH, combined_xpath)) > 0
 
