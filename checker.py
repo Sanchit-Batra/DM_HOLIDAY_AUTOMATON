@@ -1,3 +1,5 @@
+import asyncio
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -28,8 +30,9 @@ async def checker():
             close_button.click()
         except:
             pass
-
-        browser.execute_script("window.scrollBy(0, 2000)")
+        for i in range(3):
+            browser.execute_script("window.scrollBy(0, 900)")
+            await asyncio.sleep(1)
 
         WebDriverWait(browser, 10).until(
             lambda d: d.execute_script("return document.readyState") == "complete"
@@ -41,7 +44,8 @@ async def checker():
             "contains(., 'मौसम विभाग') and "
             "contains(., 'कक्षा 1 से 12')]"
         )
-
+        await asyncio.sleep(2)
+        browser.save_screenshot("screenshot.png")
         return len(browser.find_elements(By.XPATH, combined_xpath)) > 0
 
     finally:

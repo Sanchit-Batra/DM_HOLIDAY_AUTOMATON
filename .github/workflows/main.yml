@@ -36,3 +36,9 @@ jobs:
           SINRICPRO_APP_SECRET: ${{ secrets.SINRICPRO_APP_SECRET }}
         run: |
           python "DM Holiday Automation.py"
+      - name: Upload screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: facebook-screenshot
+          path: facebook.png
