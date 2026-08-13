@@ -32,7 +32,7 @@ async def checker():
             pass
         for i in range(3):
             browser.execute_script("window.scrollBy(0, 900)")
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
 
         WebDriverWait(browser, 10).until(
             lambda d: d.execute_script("return document.readyState") == "complete"
@@ -44,7 +44,7 @@ async def checker():
             "contains(., 'मौसम विभाग') and "
             "contains(., 'कक्षा 1 से 12')]"
         )
-        await asyncio.sleep(5)
+        await asyncio.sleep(10)
         browser.save_screenshot("screenshot.png")
         return len(browser.find_elements(By.XPATH, combined_xpath)) > 0
 
