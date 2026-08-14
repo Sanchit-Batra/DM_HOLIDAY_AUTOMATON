@@ -25,7 +25,8 @@ async def check_and_send(sensor: SinricProMotionSensor) -> None:
 
     if holiday_found:
         logger.info("Holiday announcement detected.")
-        await sensor.send_motion_event(True)
+        lo = await sensor.send_motion_event(True)
+        print(lo)
     else:
         logger.info("No holiday announcement detected.")
         await sensor.send_motion_event(False)
@@ -50,7 +51,7 @@ async def main() -> None:
 
         # Start motion simulation
         await check_and_send(motion_sensor)
-
+        await asyncio.sleep(2)
     except KeyboardInterrupt:
         logger.info("Shutting down...")
     except Exception:
