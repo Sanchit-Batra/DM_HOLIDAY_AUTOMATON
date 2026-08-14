@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 async def checker():
     options = ChromeOptions()
 
-    # options.add_argument("--headless=new")      # Remove for debugging
+    options.add_argument("--headless=new")      # Remove for debugging
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-blink-features=AutomationControlled")
