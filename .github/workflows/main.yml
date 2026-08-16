@@ -42,5 +42,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: facebook-screenshot
-          path: screenshot.png
+          name: debug-bundle
+          path: |
+            screenshot.png
+            loading_phase.html
