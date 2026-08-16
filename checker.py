@@ -31,7 +31,7 @@ async def checker():
         except:
             pass
         for i in range(1):
-            browser.execute_script("window.scrollBy(0, 900)")
+            browser.execute_script("window.scrollBy(0, 400)")
             await asyncio.sleep(1)
 
         WebDriverWait(browser, 10).until(
