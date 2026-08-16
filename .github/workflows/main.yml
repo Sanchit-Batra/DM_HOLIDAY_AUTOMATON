@@ -23,11 +23,13 @@ jobs:
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
-
-      # It is standard practice to create a requirements.txt, but this works fine
+      - name: Install Devanagari fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-core fonts-noto-extra
       - name: Install dependencies
         run: |
-          pip install selenium sinricpro
+          pip install -r requirements.txt
 
       - name: Run holiday checker
         env:
