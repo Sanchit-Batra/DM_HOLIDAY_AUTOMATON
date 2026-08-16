@@ -30,7 +30,7 @@ async def checker():
             close_button.click()
         except:
             pass
-        for i in range(3):
+        for i in range(1):
             browser.execute_script("window.scrollBy(0, 900)")
             await asyncio.sleep(1)
 
