@@ -30,8 +30,8 @@ async def checker():
             close_button.click()
         except:
             pass
-        for i in range(1):
-            browser.execute_script("window.scrollBy(0, 400)")
+        for i in range(3):
+            browser.execute_script("window.scrollBy(0, 800)")
             await asyncio.sleep(1)
 
         WebDriverWait(browser, 10).until(
