@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-async def checker():
+async def checker(logger):
     options = ChromeOptions()
 
     options.add_argument("--headless=new")      # Remove for debugging
@@ -44,7 +44,9 @@ async def checker():
             "contains(., 'मौसम विभाग') and "
             "contains(., 'कक्षा 1 से 12')]"
         )
+        logger.info("Started sleeping")
         await asyncio.sleep(20)
+        logger.info("Stopped sleeping")
         browser.save_screenshot("screenshot.png")
         return len(browser.find_elements(By.XPATH, combined_xpath)) > 0
 

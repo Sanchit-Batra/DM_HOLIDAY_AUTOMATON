@@ -21,7 +21,7 @@ APP_SECRET = os.getenv("SINRICPRO_APP_SECRET")
 
 async def check_and_send(sensor: SinricProMotionSensor) -> None:
     """Check the Facebook page and send the corresponding motion event."""
-    holiday_found = await checker.checker()
+    holiday_found = await checker.checker(logger)
 
     if holiday_found:
         logger.info("Holiday announcement detected.")
