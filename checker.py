@@ -48,6 +48,11 @@ async def checker(logger):
         await asyncio.sleep(20)
         logger.info("Stopped sleeping")
         browser.save_screenshot("screenshot.png")
+        raw_html = browser.page_source
+
+        # Save it to a text file
+        with open("loading_phase.html", "w", encoding="utf-8") as file:
+            file.write(raw_html)
         return len(browser.find_elements(By.XPATH, combined_xpath)) > 0
 
     finally:
