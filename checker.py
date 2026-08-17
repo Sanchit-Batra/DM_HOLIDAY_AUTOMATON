@@ -30,13 +30,13 @@ async def checker(logger):
             close_button.click()
         except:
             pass
-        for i in range(3):
-            browser.execute_script("window.scrollBy(0, 600)")
-            await asyncio.sleep(1)
-
         WebDriverWait(browser, 10).until(
             lambda d: d.execute_script("return document.readyState") == "complete"
         )
+        for i in range(3):
+            browser.execute_script("window.scrollBy(0, 600)")
+            await asyncio.sleep(3)
+
 
         combined_xpath = (
             "//div[("
